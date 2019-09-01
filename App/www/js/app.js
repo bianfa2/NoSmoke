@@ -16,28 +16,28 @@ var app = new Framework7({
             url: 'pages/ligthers-page.html',
         },
         {
-            path: '/pulmones/',
-            url: 'pages/Pulmon-page.html',
+            path: '/lung/',
+            url: 'pages/lung-page.html',
         },
         {
-            path: '/corazon/',
-            url: 'pages/Corazon-page.html',
+            path: '/heart/',
+            url: 'pages/heart-page.html',
         },
         {
-            path: '/cerebro/',
-            url: 'pages/Cerebro-page.html',
+            path: '/brain/',
+            url: 'pages/brain-page.html',
         },
         {
-            path: '/cabeza/',
-            url: 'pages/CabezaRostro-page.html',
+            path: '/head/',
+            url: 'pages/head-face-page.html',
         },
         {
-            path: '/ADN/',
-            url: 'pages/ADN-page.html',
+            path: '/dna/',
+            url: 'pages/dna-page.html',
         },
         {
             path: '/abdomen/',
-            url: 'pages/Abdomen-page.html',
+            url: 'pages/abdomen-page.html',
         }
     ],
 });
