@@ -1,25 +1,11 @@
-.icon{
+.tab-icon{
     font-size: 150%;
 }
 
-<<<<<<< HEAD
-.logout {
-    transform: rotate(180deg);
-}
-.icons{
+.icons {
     font-size: 1.5em;
 }
-.cuadro{
-    background-color: antiquewhite;
-    margin: inherit;
- 
-}
-.cuadrito{
-    background-color: antiquewhite;
-}
-.cuadrog{
-    padding: 10px;
-=======
+
 .label-custom {
     font-weight: 500;
     font-size: 20px;
@@ -27,5 +13,4 @@
 
 .label-custom2 {
     font-size: 15px;
->>>>>>> 2b22c2eb895e5a141e12e1e4a2193a92db584e8a
 }
