@@ -2,6 +2,11 @@
     font-size: 150%;
 }
 
-.logout {
-    transform: rotate(180deg);
+.label-custom {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.label-custom2 {
+    font-size: 15px;
 }
