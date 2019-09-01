@@ -1,4 +1,6 @@
 import {Router} from 'express';
+import {dataController} from '../controllers/dataController';
+
 class DataRoutes{
     
     public router: Router = Router();
@@ -8,7 +10,8 @@ class DataRoutes{
     }
 
     config(): void{
-        this.router.get('/',);
+        this.router.get('/',dataController.data);
+        this.router.post('/',dataController.create);
     }
 }
 
