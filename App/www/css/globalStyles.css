@@ -5,3 +5,17 @@
 .logout {
     transform: rotate(180deg);
 }
+.icons{
+    font-size: 1.5em;
+}
+.cuadro{
+    background-color: antiquewhite;
+    margin: inherit;
+ 
+}
+.cuadrito{
+    background-color: antiquewhite;
+}
+.cuadrog{
+    padding: 10px;
+}
