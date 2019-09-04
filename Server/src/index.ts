@@ -25,12 +25,19 @@ class Server{
         this.app.use('/',indexRoutes);
         this.app.use('/api/data',dataRoutes);
     }
-    start() : void{
-        this.app.listen(this.app.get('port'),()=>{
-            console.log('Server on port',this.app.get('port'));
+    start() : any{
+        return this.app.listen(this.app.get('port'),()=>{
+            console.log('Server on port',this.app.get('port'));            
         });
     }
 }
 
 const server = new Server();
-server.start();
+var serv = server.start();
+
+const SocketIO = require("socket.io");
+const io= SocketIO(serv);
+
+io.on('connection', ()=>{
+    console.log("new connection")
+})

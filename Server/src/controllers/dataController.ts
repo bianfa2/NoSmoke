@@ -1,10 +1,23 @@
-import {Request, Response} from 'express';
+import {Request, Response, response} from 'express';
 import db from '../database';
 import { text } from 'body-parser';
 
 class DataController{
-    public data(req: Request,res:Response) {        
-        res.send('Data');
+    
+  public data(req: Request,res:Response) {        
+        console.log(req.body);
+        console.log('funcionamiento')
+
+        
+  res.json({text:'hola'})
+      //  res.json(db.collection('datosEncendedor').doc('81Y3vsbFVHhiiycMAVrS'));
+
+      //   let observer = doc.onSnapshot((docSnapshot: any) => {          
+      //     console.log(`Received doc snapshot: ${docSnapshot}`+docSnapshot.data().encendida);
+      //       res.json({datas:observer});
+      //   }, (err:any) => {
+      //     console.log(`Encountered error: ${err}`);
+      //   });
     }
 
     create(req: Request, res: Response){
