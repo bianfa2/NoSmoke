@@ -32,4 +32,4 @@ class LigtherController{
     }
 }
 
-export const dataController = new LigtherController();
+export const lighterController = new LigtherController();

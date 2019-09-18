@@ -4,6 +4,7 @@ import cors from 'cors';
 
 import indexRoutes from './routes/indexRoutes';
 import dataRoutes from './routes/dataRoutes';
+import lighterRoutes from './routes/lighterRoutes';
 
 class Server{
 
@@ -24,7 +25,7 @@ class Server{
     routes() : void {
         this.app.use('/',indexRoutes);
         this.app.use('/api/data',dataRoutes);
-        this.app.use('/api/lighter',dataRoutes);
+        this.app.use('/api/lighter',lighterRoutes);
     }
     start() : any{
         return this.app.listen(this.app.get('port'),()=>{
