@@ -24,6 +24,7 @@ class Server{
     routes() : void {
         this.app.use('/',indexRoutes);
         this.app.use('/api/data',dataRoutes);
+        this.app.use('/api/lighter',dataRoutes);
     }
     start() : any{
         return this.app.listen(this.app.get('port'),()=>{
