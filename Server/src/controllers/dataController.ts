@@ -20,7 +20,7 @@ class DataController{
       //   });
     }
 
-    create(req: Request, res: Response){
+    public create(req: Request, res: Response){
         console.log(req.body);
         db.collection("datosEncendedor").doc().set(req.body)
         .then(function(){      
@@ -32,6 +32,11 @@ class DataController{
 
         res.json({text:'creating smoking data'});
     }
+
+    public delete(req: Request, res:Response){
+
+    }
+
 }
 
 export const dataController = new DataController();
