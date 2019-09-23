@@ -12,8 +12,8 @@ var app = new Framework7({
             url: 'index.html',
         },
         {
-            path: '/ligthers/',
-            url: 'pages/ligthers-page.html',
+            path: '/lighters/',
+            url: 'pages/lighters-page.html',
         },
         {
             path: '/lung/',
