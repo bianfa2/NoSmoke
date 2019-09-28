@@ -14,6 +14,19 @@ var app = new Framework7({
         {
             path: '/lighters/',
             url: 'pages/lighters-page.html',
+            on: {
+                pageInit: function (event, page) {
+
+                    var index = localStorage.getItem("index");
+
+                    if(index){
+                        for(var i = 0; i < parseInt(index); i++){
+                            show_lighter(localStorage.getItem(i));
+                        }
+                    }
+                    // console.log(document.getElementById('lightersList'));
+                }
+            }
         },
         {
             path: '/lung/',
@@ -43,3 +56,6 @@ var app = new Framework7({
 });
 
 var mainView = app.views.create('.view-main');
+if(!localStorage.getItem("index")){
+    localStorage.setItem("index", 0);
+}
