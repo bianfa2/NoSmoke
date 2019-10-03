@@ -1,7 +1,7 @@
 function add_lighter(){
     app.dialog.prompt('Ingrese la referencia del encendedor', 'Nuevo encendedor', function(reference){
         if(!isNaN(parseInt(reference))){
-            
+            app.dialog.preloader('Agregando...');
             $.ajax({
                 url: 'http://nlighter3.azurewebsites.net/api/lighter/id='+reference,
                 dataType: "json",
@@ -9,6 +9,7 @@ function add_lighter(){
                 contentType: "application/jsonp;charset=utf-8",
                 crossDomain: true,
                 success: function (data) {
+                    app.dialog.close();
                     if(data.exists){
                         save_reference(reference);
                         show_lighter(reference);
