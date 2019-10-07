@@ -24,7 +24,6 @@ var app = new Framework7({
                             show_lighter(localStorage.getItem(i));
                         }
                     }
-                    // console.log(document.getElementById('lightersList'));
                 }
             }
         },
@@ -59,3 +58,8 @@ var mainView = app.views.create('.view-main');
 if(!localStorage.getItem("index")){
     localStorage.setItem("index", 0);
 }
+
+var socket = io('192.168.0.22:3000');
+socket.on('prueba', data =>{
+    console.log(data);
+});
