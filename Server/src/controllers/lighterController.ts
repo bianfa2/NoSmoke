@@ -4,18 +4,18 @@ import db from '../database';
 class LigtherController{
     public data(req: Request,res:Response){        
         console.log(req.body);
-        
-    db.collection('encendedores').doc(req.body.id).get()
-    .then((doc:any) => {
-      if (!doc.exists) {
-       res.json({exists:false})
-      } else {
-        res.json({exists:true})
-      }
-    })
-      .catch((err: any) => {
-      console.log('Error getting document', err);
-      });
+        db.collection('encendedores').doc(req.params.id).get()
+            .then((doc:any) => {
+            if (!doc.exists) {
+                res.json({ exists: false });
+            }
+            else {
+                res.json({ exists: true });
+            }
+        })
+            .catch((err:any) => {
+            console.log('Error getting document', err);
+        });
     }
 
     create(req: Request, res: Response){

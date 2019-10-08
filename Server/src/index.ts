@@ -5,6 +5,7 @@ import cors from 'cors';
 import indexRoutes from './routes/indexRoutes';
 import dataRoutes from './routes/dataRoutes';
 import lighterRoutes from './routes/lighterRoutes';
+import statisticRoutes from './routes/statisticRoutes'
 
 import db from './database';
 
@@ -28,6 +29,7 @@ class Server{
         this.app.use('/',indexRoutes);
         this.app.use('/api/data',dataRoutes);
         this.app.use('/api/lighter',lighterRoutes);
+        this.app.use('/api/lighter',statisticRoutes);
     }
     start() : any{
         return this.app.listen(this.app.get('port'),()=>{
@@ -38,39 +40,43 @@ class Server{
 
 const server = new Server();
 var serv = server.start();
-
 const SocketIO = require("socket.io");
-const io= SocketIO(serv);
+const io = SocketIO(serv);
+// io.set('transports', ['websocket']);
+// io.set('origins', '*:*');
 
-io.on('connection', ()=>{
-    console.log("new connection")
+io.on('connection', (socket:any) => {
+    console.log("new connection");
+    var lighters = [123,124];
+    socket.on('lighters', (lightersR: any)=>{
+        // lighters = lightersR;
+    })
     let query = db.collection('encendedores').doc('123');
-    
     let observer = query.onSnapshot((doc:any) => {
-        var userData= {
+        var userData = {
+            last:null,
             current: 0,
             total: 0
-        }
-        var data=doc.data()
-        for(var i=0; i<=data.ultimo;i++){            
+        };
+        var data = doc.data();
+        for (var i = 0; i <= data.ultimo; i++) {
             userData.total += data[i][1];
-            console.log(data[i][0])
-            console.log(userData.total)
+            console.log(data[i][0]);
+            console.log(userData.total);
             
         }
-
-        if(isToday(new Date(data[data.ultimo][0].split(' ')[0]), new Date())){
-            userData.current=data[data.ultimo][1]
+        if (isToday(new Date(data[data.ultimo][0].split(' ')[0]), new Date())) {
+            userData.current = data[data.ultimo][1];
         }
-        io.sockets.emit('prueba',userData)
+        userData.last=data[data.ultimo][0]
+        io.sockets.emit('change', userData);
     }, (err:any) => {
         console.log(`Encountered error: ${err}`);
     });
-})
-
-function isToday( date1:Date, date2:Date ) {    
-    date2.setTime(date1.getTime())
-    var one_day=1000*60*60*24;
-    var difference_ms = date2.getTime() -date1.getTime();          
-    return (difference_ms/one_day) ==0 ; 
-  }
+});
+function isToday(date1:Date, date2:Date) {
+    date2.setTime(date1.getTime());
+    var one_day = 1000 * 60 * 60 * 24;
+    var difference_ms = date2.getTime() - date1.getTime();
+    return (difference_ms / one_day) == 0;
+}

@@ -10,7 +10,7 @@ class LighterRoutes{
     }
 
     config(): void{
-        this.router.get('/',lighterController.data);
+        this.router.get('/id=:id',lighterController.data);
         this.router.post('/',lighterController.create);
     }
 }
