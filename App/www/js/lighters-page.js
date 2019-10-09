@@ -3,7 +3,7 @@ function add_lighter(){
         if(!isNaN(parseInt(reference))){
             app.dialog.preloader('Agregando...');
             $.ajax({
-                url: 'http://nlighter3.azurewebsites.net/api/lighter/id='+reference,
+                url: 'http://192.168.0.22:3000/api/lighter/id='+reference,
                 dataType: "json",
                 type: 'GET',
                 contentType: "application/jsonp;charset=utf-8",
@@ -47,6 +47,9 @@ function remove_lighter(reference){
     }
 
     localStorage.setItem("index", index-1);
+    indexLighters -= 1;
+    clean_statistics();
+    monitor_lighters();    
 
 }
 
@@ -54,6 +57,8 @@ function save_reference(reference){
     var index = parseInt(localStorage.getItem("index"));
     localStorage.setItem(index, reference);
     localStorage.setItem("index", index+1);
+    indexLighters += 1;
+    monitor_lighters();    
 }
 
 function show_lighter(reference){

@@ -1,3 +1,4 @@
+var indexLighters = parseInt(localStorage.getItem("index"));
 var app = new Framework7({
 
     root: '#app',
@@ -16,12 +17,9 @@ var app = new Framework7({
             url: 'pages/lighters-page.html',
             on: {
                 pageInit: function (event, page) {
-
-                    var index = localStorage.getItem("index");
-
-                    if(index){
-                        for(var i = 0; i < parseInt(index); i++){
-                            show_lighter(localStorage.getItem(i));
+                    if(indexLighters){
+                        for(var i = 0; i < indexLighters; i++){
+                            show_lighter(localStorage.getItem(i));                            
                         }
                     }
                 }
@@ -55,11 +53,7 @@ var app = new Framework7({
 });
 
 var mainView = app.views.create('.view-main');
+
 if(!localStorage.getItem("index")){
     localStorage.setItem("index", 0);
 }
-
-var socket = io('192.168.0.22:3000');
-socket.on('prueba', data =>{
-    console.log(data);
-});
