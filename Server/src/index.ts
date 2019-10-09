@@ -74,9 +74,7 @@ io.on('connection', (socket:any) => {
     })
 });
 function isToday(date1:Date, date2:Date) {
-    // date2.setTime(date1.getTime());
     var one_day = 1000 * 60 * 60 * 24;
     var difference_ms = date2.getTime() - date1.getTime();
-    console.log((difference_ms / one_day))
     return Math.floor(difference_ms / one_day) == 0;
 }
