@@ -47,36 +47,36 @@ const io = SocketIO(serv);
 
 io.on('connection', (socket:any) => {
     console.log("new connection");
-    var lighters = [123,124];
-    socket.on('lighters', (lightersR: any)=>{
-        // lighters = lightersR;
+    socket.on('lighter', (lighter: any)=>{
+        let query = db.collection('encendedores').doc(lighter);
+        let observer = query.onSnapshot((doc:any) => {
+            var userData = {
+                last:null,
+                current: 0,
+                total: 0
+            };
+            var data = doc.data();
+            for (var i = 0; i <= data.ultimo; i++) {
+                userData.total += data[i][1];
+                console.log(data[i][0]);
+                console.log(userData.total);
+                
+            }
+            if (isToday(new Date(data[data.ultimo][0].split(' ')[0]), new Date())) {
+                userData.current = data[data.ultimo][1];
+            }
+            userData.last=data[data.ultimo][0]
+            console.log(lighter)
+            io.sockets.emit(lighter, userData);
+        }, (err:any) => {
+            console.log(`Encountered error: ${err}`);
+        });
     })
-    let query = db.collection('encendedores').doc('123');
-    let observer = query.onSnapshot((doc:any) => {
-        var userData = {
-            last:null,
-            current: 0,
-            total: 0
-        };
-        var data = doc.data();
-        for (var i = 0; i <= data.ultimo; i++) {
-            userData.total += data[i][1];
-            console.log(data[i][0]);
-            console.log(userData.total);
-            
-        }
-        if (isToday(new Date(data[data.ultimo][0].split(' ')[0]), new Date())) {
-            userData.current = data[data.ultimo][1];
-        }
-        userData.last=data[data.ultimo][0]
-        io.sockets.emit('change', userData);
-    }, (err:any) => {
-        console.log(`Encountered error: ${err}`);
-    });
 });
 function isToday(date1:Date, date2:Date) {
-    date2.setTime(date1.getTime());
+    // date2.setTime(date1.getTime());
     var one_day = 1000 * 60 * 60 * 24;
     var difference_ms = date2.getTime() - date1.getTime();
-    return (difference_ms / one_day) == 0;
+    console.log((difference_ms / one_day))
+    return Math.floor(difference_ms / one_day) == 0;
 }
