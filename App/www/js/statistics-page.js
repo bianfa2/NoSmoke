@@ -27,7 +27,7 @@ function monitor_lighters(){
     if(indexLighters){
         for(var i = 0; i < indexLighters; i++){
             lightersMonitors.push({
-                socket: io('192.168.0.22:3000'),
+                socket: io('10.8.80.58:3000'),
                 data: localStorage.getItem(i)
             });            
         }
