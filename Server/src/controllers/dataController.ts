@@ -55,7 +55,7 @@ class DataController{
 
 function currentDate(){
   var a = new Date()
-  return (a.getMonth()+1)+'/'+a.getDate()+'/'+a.getFullYear()+' '+a.getHours()+':'+a.getMinutes();
+  return (a.getMonth()+1)+'/'+a.getDate()+'/'+a.getFullYear()+' '+a.getHours()+':'+a.getMinutes()+':'+a.getSeconds();
 }
 
 function isToday(date1:any, date2:any) {
