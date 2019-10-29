@@ -2,26 +2,12 @@ import {Request, Response, response} from 'express';
 import db from '../database';
 import { text } from 'body-parser';
 
-interface Men {
-    ultimo : number
-}
-
 class DataController{
     
   public data(req: Request,res:Response) {        
         console.log(req.body);
         console.log('funcionamiento')
-
-        
-  res.json({text:'hola'})
-      //  res.json(db.collection('datosEncendedor').doc('81Y3vsbFVHhiiycMAVrS'));
-
-      //   let observer = doc.onSnapshot((docSnapshot: any) => {          
-      //     console.log(`Received doc snapshot: ${docSnapshot}`+docSnapshot.data().encendida);
-      //       res.json({datas:observer});
-      //   }, (err:any) => {
-      //     console.log(`Encountered error: ${err}`);
-      //   });
+        res.json({text:'hola'})     
     }
 
     public create(req: Request, res: Response){
