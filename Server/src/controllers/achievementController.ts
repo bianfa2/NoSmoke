@@ -6,17 +6,24 @@ class AchievementController{
     
   public data(req: Request,res:Response) {  
       
-    console.log('i am gay')
-      
     db.collection('encendedores').doc(req.params.id)
         .get().then((doc : any) => {
             var data = doc.data()
             var difference = daysDiff(new Date(data[data.ultimo][0].split(' ')[0]), new Date(currentDate()))
                 if(difference<=0) res.json({})
+                
                 else{
-                    var medalRef=db.collection('logros');
-                    var medalQuery = medalRef.where('logro','<= ',difference)
-                    res.json(medalQuery);
+
+                    db.collection('logros').where('logro','<=',difference)
+                    .get()
+                    .then(function(querySnapshot:any){
+                        var achievementArray: any = [];
+                        querySnapshot.forEach(function(doc2:any) {                               
+                            achievementArray.push(doc2.data())                            
+                })
+                        res.json(achievementArray)
+                    })
+                    
                 }
                 
             

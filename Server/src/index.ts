@@ -6,6 +6,7 @@ import indexRoutes from './routes/indexRoutes';
 import dataRoutes from './routes/dataRoutes';
 import lighterRoutes from './routes/lighterRoutes';
 import statisticRoutes from './routes/statisticRoutes'
+import achievementRoutes from './routes/achievementRoutes'
 
 import db from './database';
 
@@ -29,7 +30,8 @@ class Server{
         this.app.use('/',indexRoutes);
         this.app.use('/api/data',dataRoutes);
         this.app.use('/api/lighter',lighterRoutes);
-        this.app.use('/api/lighter',statisticRoutes);
+        this.app.use('/api/statistic',statisticRoutes);
+        this.app.use('/api/achievement',achievementRoutes);
     }
     start() : any{
         return this.app.listen(this.app.get('port'),()=>{
