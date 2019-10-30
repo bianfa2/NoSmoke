@@ -16,6 +16,7 @@ var gauge = app.gauge.create({
     labelFontWeight: '800'
 });
 
+look_achievements();
 monitor_lighters();
 
 function monitor_lighters(){
@@ -27,7 +28,7 @@ function monitor_lighters(){
     if(indexLighters){
         for(var i = 0; i < indexLighters; i++){
             lightersMonitors.push({
-                socket: io('35.202.47.143:3000'),
+                socket: io('34.69.242.97:3000'),
                 data: localStorage.getItem(i)
             });            
         }
