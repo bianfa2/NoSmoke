@@ -9,7 +9,7 @@ class AchievementController{
     db.collection('encendedores').doc(req.params.id)
         .get().then((doc : any) => {
             var data = doc.data()
-            var difference = daysDiff(new Date(data[data.ultimo][0].split(' ')[0]), new Date(currentDate()))
+            var difference = daysDiff(new Date(data[data.ultimo][0]), new Date(currentDate()))
                 if(difference<=0) res.json({})
                 
                 else{
@@ -39,7 +39,7 @@ class AchievementController{
 
 function currentDate(){
   var a = new Date()
-  return (a.getMonth()+1)+'/'+a.getDate()+'/'+a.getFullYear();
+  return (a.getMonth()+1)+'/'+a.getDate()+'/'+a.getFullYear()+' '+a.getHours()+':'+a.getMinutes()+':'+a.getSeconds();
 }
 
 function daysDiff(date1:any, date2:any) {
